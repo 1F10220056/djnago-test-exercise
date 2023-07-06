@@ -2,7 +2,6 @@ from django.test import TestCase, Client
 from django.utils import timezone
 from datetime import datetime
 from todo.models import Task
-import json
 
 # Create your tests here.
 class SampleTestCase(TestCase):
@@ -105,7 +104,7 @@ class TaskModelTestCase(TestCase):
 
         self.assertEqual(responese.status_code, 200)
         self.assertEqual(responese.templates[0].name, "todo/detail.html")
-        self.assertEqual(responese.content["task"], task)
+        self.assertEqual(responese.context["task"], task)
 
     def tssk_detail_get_fail(self):
         client = Client()
